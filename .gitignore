@@ -1,0 +1,6 @@
+backup/
+benchmark
+strassen
+test.sh
+*.mat
+*.o
