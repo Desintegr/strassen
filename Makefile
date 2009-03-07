@@ -1,7 +1,7 @@
 CC=g++
-CFLAGS=-W -Wall -O3
+CFLAGS=-O3 -march=native -pipe -W -Wall
 LDFLAGS=
-EXEC=strassen benchmark
+EXEC=strassen benchmark generate
 
 all: $(EXEC)
 
@@ -9,6 +9,9 @@ strassen: src/strassen.o src/matrix.o
 	$(CC) $(LDFLAGS) $^ -o $@
 
 benchmark: src/benchmark.o src/matrix.o
+	$(CC) $(LDFLAGS) $^ -o $@
+
+generate: src/generate.o src/matrix.o
 	$(CC) $(LDFLAGS) $^ -o $@
 
 %.o: %.cpp

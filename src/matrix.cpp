@@ -1,10 +1,13 @@
 #include "matrix.h"
 
+#include <fstream>
+#include <iomanip>
 #include <iostream>
-#include <cassert>
-#include <cstring>
 
-Matrix::Matrix(const size_t size):
+#include <cassert>
+#include <cstdlib>
+
+Matrix::Matrix(const size_t size, const bool random):
      // L’algorithme de Strassen fonctionne avec des matrices carrées
      // dont la taille des côtés est une puissance de 2. Si la taille
      // spécifiée n'est pas une puissance de 2, on alloue quand même
@@ -15,10 +18,11 @@ Matrix::Matrix(const size_t size):
      m_real_size(size),
      m_data(new double[m_alloc_size * m_alloc_size])
 {
-     // for (index_t i = 0; i < m_alloc_size; ++i)
-     //      for (index_t j = 0; j < m_alloc_size; ++j)
-     //           (*this)(i, j, 0);
-     //memset(m_data, 0, m_alloc_size * m_alloc_size * sizeof(double));
+     if(random) {
+          for (index_t i = 0; i < m_real_size; ++i)
+               for (index_t j = 0; j < m_real_size; ++j)
+                    (*this)(i, j, rand() % 10000);
+     }
 }
 
 Matrix::Matrix(const double *data, const size_t size):
@@ -29,33 +33,35 @@ Matrix::Matrix(const double *data, const size_t size):
      for (index_t i = 0; i < m_real_size; ++i)
           for (index_t j = 0; j < m_real_size; ++j)
                (*this)(i, j, data[i * m_real_size + j]);
-     //memcpy(m_data, data, m_alloc_size * m_alloc_size * sizeof(double));
 }
 
-Matrix::Matrix(const Matrix &m):
-     m_alloc_size(m.m_alloc_size),
-     m_real_size(m.m_real_size),
-     m_data(new double[m_alloc_size * m_alloc_size])
+Matrix::Matrix(std::ifstream &ifs)
 {
-     // for (index_t i = 0; i < m_alloc_size; ++i)
-     //      for (index_t j = 0; j < m_alloc_size; ++j)
-     //           (*this)(i, j, m(i, j));
-     memcpy(m_data, m.m_data, m_alloc_size * m_alloc_size * sizeof(double));
+     size_t size;
+     ifs >> size;
+
+     m_alloc_size = nextPowerOf2(size);
+     m_real_size = size;
+     m_data = new double[m_alloc_size * m_alloc_size];
+
+     double tmp;
+     for(index_t i = 0; i < m_real_size; ++i)
+          for(index_t j = 0; j < m_real_size; ++j) {
+               ifs >> tmp;
+               (*this)(i, j, tmp);
+          }
 }
 
-Matrix::Matrix(const Matrix &c11, const Matrix &c12, const Matrix &c21, const Matrix &c22)
+Matrix::Matrix(const Matrix &c11, const Matrix &c12, const Matrix &c21, const Matrix &c22):
+     m_alloc_size(c11.allocSize() * 2),
+     m_real_size(c11.size() * 2),
+     m_data(new double[m_alloc_size * m_alloc_size])
 {
      assert(c11.size() == c12.size()
             && c12.size() == c21.size()
             && c21.size() == c22.size());
 
-     m_alloc_size = c11.m_alloc_size * 2;
-     m_real_size = c11.m_real_size * 2;
-     m_data = new double[m_alloc_size * m_alloc_size];
-
-     //memset(m_data, 0, m_alloc_size * m_alloc_size * sizeof(double));
-
-     const size_t s = c11.m_real_size;
+     const size_t s = c11.size();
 
      for(index_t i = 0; i < s; ++i)
           for(index_t j = 0; j < s; ++j) {
@@ -66,6 +72,16 @@ Matrix::Matrix(const Matrix &c11, const Matrix &c12, const Matrix &c21, const Ma
           }
 }
 
+Matrix::Matrix(const Matrix &m):
+     m_alloc_size(m.allocSize()),
+     m_real_size(m.size()),
+     m_data(new double[m_alloc_size * m_alloc_size])
+{
+     for (index_t i = 0; i < m_alloc_size; ++i)
+          for (index_t j = 0; j < m_alloc_size; ++j)
+               (*this)(i, j, m(i, j));
+}
+
 Matrix::~Matrix()
 {
      delete[] m_data;
@@ -73,36 +89,46 @@ Matrix::~Matrix()
 
 Matrix Matrix::operator*(const Matrix &m) const
 {
-     assert(size() == m.size());
+     assert(m_real_size == m.size());
 
-     if (size() == 1) {
+     if (m_real_size == 1) {
           Matrix r(1);
           r(0, 0, (*this)(0, 0) * m(0, 0));
           return r;
      }
      else {
-          Matrix m1 = (slice11() + slice22()) * (m.slice11() + m.slice22());
-          Matrix m2 = (slice21() + slice22()) *  m.slice11();
-          Matrix m3 =  slice11()              * (m.slice12() - m.slice22());
-          Matrix m4 =  slice22()              * (m.slice21() - m.slice11());
-          Matrix m5 = (slice11() + slice12()) *  m.slice22();
-          Matrix m6 = (slice21() - slice11()) * (m.slice11() + m.slice12());
-          Matrix m7 = (slice12() - slice22()) * (m.slice21() + m.slice22());
+          const Matrix a11 = slice11();
+          const Matrix a12 = slice12();
+          const Matrix a21 = slice21();
+          const Matrix a22 = slice22();
 
-          Matrix c11 = m1 + m4 - m5 + m7;
-          Matrix c12 = m3 + m5;
-          Matrix c21 = m2 + m4;
-          Matrix c22 = m1 - m2 + m3 + m6;
+          const Matrix b11 = m.slice11();
+          const Matrix b12 = m.slice12();
+          const Matrix b21 = m.slice21();
+          const Matrix b22 = m.slice22();
 
-          Matrix r = Matrix(c11, c12, c21, c22);
-          r.m_real_size = m.m_real_size; // on remet la taille correcte
+          const Matrix m1 = (a11 + a22) * (b11 + b22);
+          const Matrix m2 = (a21 + a22) *  b11;
+          const Matrix m3 =        a11  * (b12 - b22);
+          const Matrix m4 =        a22  * (b21 - b11);
+          const Matrix m5 = (a11 + a12) *  b22;
+          const Matrix m6 = (a21 - a11) * (b11 + b12);
+          const Matrix m7 = (a12 - a22) * (b21 + b22);
+
+          const Matrix c11 = m1 + m4 - m5 + m7;
+          const Matrix c12 = m3 + m5;
+          const Matrix c21 = m2 + m4;
+          const Matrix c22 = m1 - m2 + m3 + m6;
+
+          Matrix r(c11, c12, c21, c22);
+          r.m_real_size = m.size(); // on remet la taille correcte
           return r;
      }
 }
 
 Matrix Matrix::operator+(const Matrix &m) const
 {
-     assert(size() == m.size());
+     assert(m_real_size == m.size());
 
      Matrix r(m.size());
 
@@ -115,7 +141,7 @@ Matrix Matrix::operator+(const Matrix &m) const
 
 Matrix Matrix::operator-(const Matrix &m) const
 {
-     assert(size() == m.size());
+     assert(m_real_size == m.size());
 
      Matrix r(m.size());
 
@@ -174,29 +200,48 @@ Matrix Matrix::slice22() const
      return m;
 }
 
-std::ostream & operator<<(std::ostream &os, const Matrix &m)
+void Matrix::print(std::ostream &os) const
 {
 #ifdef DEBUG
-     for(index_t i = 0; i < m.m_alloc_size; ++i) {
+     /*
+      * Affiche la matrice complète (allouée) (avec les lignes et les
+      * colonnes remplies de 0)
+      */
+     for(index_t i = 0; i < m_alloc_size; ++i) {
           os << "[";
-          for(index_t j = 0; j < m.m_alloc_size; ++j) {
-               os << m(i, j);
-               if(j != m.m_alloc_size - 1)
+          for(index_t j = 0; j < m_alloc_size; ++j) {
+               os << (*this)(i, j);
+               if(j != m_alloc_size - 1)
                     os << " ";
           }
           os << "]" << std::endl;
      }
 #else
-     for(index_t i = 0; i < m.size(); ++i) {
+     /*
+      * Affiche la matrice réelle (sans les lignes et les colonnes
+      * remplies de 0)
+      */
+     for(index_t i = 0; i < m_real_size; ++i) {
           os << "[";
-          for(index_t j = 0; j < m.size(); ++j) {
-               os << m(i, j);
-               if(j != m.size() - 1)
+          for(index_t j = 0; j < m_real_size; ++j) {
+               os << (*this)(i, j);
+               if(j != m_real_size - 1)
                     os << " ";
           }
           os << "]" << std::endl;
      }
 #endif
+}
 
-     return os;
+void Matrix::write(std::ofstream &ofs) const
+{
+     ofs << m_real_size << std::endl;
+     for(index_t i = 0; i < m_real_size; ++i) {
+          for(index_t j = 0; j < m_real_size; ++j) {
+               ofs << std::fixed << (*this)(i, j);
+               if(j != m_real_size - 1)
+                    ofs << std::fixed << " ";
+          }
+          ofs << std::endl;
+     }
 }

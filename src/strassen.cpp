@@ -1,59 +1,34 @@
 #include "matrix.h"
 
-#include <iostream>
 #include <fstream>
+#include <iostream>
 
 #include <cstdlib>
 
 int main(int argc, char **argv)
 {
+  if(argc == 4) {
      std::ifstream in;
-     size_t size;
-     double tmp;
 
      in.open(argv[1]);
-     
-     in >> size;
-
-     Matrix m1(size);
-
-     for(index_t i = 0; i < size; ++i)
-          for(index_t j = 0; j < size; ++j) {
-               in >> tmp;
-               m1(i, j, tmp);
-          }
-
+     const Matrix m1(in);
      in.close();
 
      in.open(argv[2]);
-
-     in >> size;
-
-     Matrix m2(size);
-     for(index_t i = 0; i < size; ++i)
-          for(index_t j = 0; j < size; ++j) {
-               in >> tmp;
-               m2(i, j, tmp);
-          }
-     
+     const Matrix m2(in);
      in.close();
 
      std::ofstream out;
      out.open(argv[3]);
-     
      Matrix m3 = m1 * m2;
-     
-     out << size << std::endl;
-     for(index_t i = 0; i < size; ++i) {
-          for(index_t j = 0; j < size; ++j) {
-               out << m3(i, j);
-               if(j != size -1)
-                    out << " ";
-          }
-          out << std::endl;
-     }
-
+     m3.write(out);
      out.close();
-     
+
      return EXIT_SUCCESS;
+  }
+  else {
+    std::cout << "Usage: " << argv[0] << " inputfile1 inputfile2 outputfile " << std::endl;
+
+    return EXIT_FAILURE;
+  }
 }

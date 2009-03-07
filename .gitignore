@@ -1,6 +1,9 @@
 backup/
+compare
 benchmark
+generate
+mult
 strassen
-test.sh
+TODO.org
 *.mat
 *.o

@@ -1,37 +1,36 @@
 #ifndef MATRIX_H
 #define MATRIX_H
 
-#include <ostream>
+#include <fstream>
+#include <iostream>
 
 typedef unsigned int index_t;
 typedef unsigned int size_t;
 
 class Matrix
 {
-     /*!
-      * Permet d'afficher la matrice m via l'opérateur <<.
-      */
-     friend std::ostream & operator<<(std::ostream &os, const Matrix &m);
-
 public:
      /*!
-      * Constructeur de matrice carrée vide de taille size × size.
+      * Constructeur de matrice carrée vide de taille size × size
+      * @param random si vrai, remplit la matrice avec des données
+      * aléatoires
       */
-     Matrix(const size_t size);
+     Matrix(const size_t size, const bool random = false);
 
      /*!
-      * Constructeur de matrice carrée de taille size × size à partir des données
-      * contenues dans le tableau data.
+      * Constructeur de matrice carrée de taille size × size à partir
+      * des données contenues dans le tableau data
       */
      Matrix(const double *data, const size_t size);
 
      /*!
-      * Constructeur de recopie
+      * Constructeur de matrice à partir d'un flux de fichier
       */
-     Matrix(const Matrix &m);
+     Matrix(std::ifstream &ifs);
 
      /*!
-      * Constructeur de matrice à partir de 4 sous-matrices.
+      * Constructeur de matrice à partir de 4 sous-matrices
+      *
       * La nouvelle matrice construite est :
       * -------------
       * | c11 | c12 |
@@ -42,12 +41,18 @@ public:
      Matrix(const Matrix &c11, const Matrix &c12, const Matrix &c21, const Matrix &c22);
 
      /*!
+      * Constructeur de recopie
+      */
+     Matrix(const Matrix &m);
+
+     /*!
       * Desctructeur de matrice
       */
      ~Matrix();
 
      /*!
-      * Multiplie par la matrice m en utilisant l'algorithme de Strassen
+      * Multiplie par la matrice m en utilisant l'algorithme de
+      * Strassen
       */
      Matrix operator*(const Matrix &m) const;
 
@@ -70,7 +75,7 @@ public:
      }
 
      /*!
-      * Met la valeur b à la position i,j
+      * Met la valeur v à la position i,j
       */
      inline void operator()(const size_t i, const size_t j, const double v)
      {
@@ -78,49 +83,78 @@ public:
      }
 
      /*!
-      * Retourne la taille de la matrice
+      * Retourne la taille réelle de la matrice
       */
      inline size_t size() const
      {
           return m_real_size;
      }
 
-//private: FIXME
+     /*!
+      * Permet d'afficher la matrice dans un flux
+      */
+     void print(std::ostream &os) const;
+
+     /*!
+      * Écrit la matrice dans un flux de fichier
+      */
+     void write(std::ofstream &ofs) const;
+
+private:
+     /*!
+      * Retour la taille allouée de la matrice
+      */
+     inline size_t allocSize() const
+     {
+          return m_alloc_size;
+     }
+
      /*
-      * -------------
-      * | c11 | c12 |
-      * |-----------|
-      * | c21 | c22 |
-      * -------------
+      * -----------
+      * | 11 | 12 |
+      * |---------|
+      * | 21 | 22 |
+      * -----------
       */
 
      /*!
-      * Retourne la sous-matrice c11
+      * Retourne la sous-matrice 11
       */
      Matrix slice11() const;
 
      /*!
-      * Retourne la sous-matrice c12
+      * Retourne la sous-matrice 12
       */
      Matrix slice12() const;
 
      /*!
-      * Retourne la sous-matrice c21
+      * Retourne la sous-matrice 21
       */
      Matrix slice21() const;
 
      /*!
-      * Retourne la sous-matrice c22
+      * Retourne la sous-matrice 22
       */
      Matrix slice22() const;
 
+     /*!
+      * La taille allouée
+      */
      size_t m_alloc_size;
+
+     /*!
+      * La taille réelle
+      */
      size_t m_real_size;
+
+     /*!
+      * Les données
+      */
      double* m_data;
 };
 
 /*!
- * Retourne la puissance de 2 supérieur ou égale à v
+ * Retourne la puissance de 2 supérieure ou égale à v
  */
 inline unsigned int nextPowerOf2(const size_t v)
 {
