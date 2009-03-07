@@ -33,12 +33,12 @@ public:
       *
       * La nouvelle matrice construite est :
       * -------------
-      * | c11 | c12 |
+      * | c00 | c01 |
       * |-----------|
-      * | c21 | c22 |
+      * | c10 | c11 |
       * -------------
       */
-     Matrix(const Matrix &c11, const Matrix &c12, const Matrix &c21, const Matrix &c22);
+     Matrix(const Matrix &c00, const Matrix &c01, const Matrix &c10, const Matrix &c11);
 
      /*!
       * Constructeur de recopie
@@ -109,33 +109,15 @@ private:
           return m_alloc_size;
      }
 
-     /*
+     /*!
+      * Retourne la sous-matrice ij
       * -----------
-      * | 11 | 12 |
+      * | 00 | 01 |
       * |---------|
-      * | 21 | 22 |
+      * | 10 | 11 |
       * -----------
       */
-
-     /*!
-      * Retourne la sous-matrice 11
-      */
-     Matrix slice11() const;
-
-     /*!
-      * Retourne la sous-matrice 12
-      */
-     Matrix slice12() const;
-
-     /*!
-      * Retourne la sous-matrice 21
-      */
-     Matrix slice21() const;
-
-     /*!
-      * Retourne la sous-matrice 22
-      */
-     Matrix slice22() const;
+     Matrix slice(const index_t i, const index_t j) const;
 
      /*!
       * La taille allouée

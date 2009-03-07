@@ -9,7 +9,6 @@ int main(int argc, char**argv)
 {
      if(argc != 3) {
           std::cout << "Usage: " << argv[0] << " size outputfile" << std::endl;
-
           return EXIT_FAILURE;
      }
 
