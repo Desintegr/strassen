@@ -169,20 +169,18 @@ Matrix Matrix::slice(const index_t i, const index_t j) const
 
 void Matrix::print(std::ostream &os) const
 {
-     size_t size;
-
 #ifdef DEBUG
      /*
       * Affiche la matrice complète (allouée) (avec les lignes et les
       * colonnes remplies de 0)
       */
-     size = m_alloc_size;
+     const size_t size = m_alloc_size;
 #else
      /*
       * Affiche la matrice réelle (sans les lignes et les colonnes
       * remplies de 0)
       */
-     size = m_real_size;
+     const size_t size = m_real_size;
 #endif
 
      for(index_t i = 0; i < size; ++i) {
