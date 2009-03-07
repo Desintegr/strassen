@@ -17,10 +17,18 @@ rm -f 2.mat
 rm -f strassen.mat
 rm -f mult.mat
 
-./generate $1 1.mat
-./generate $1 2.mat
-./strassen 1.mat 2.mat strassen.mat
-./mult 1.mat 2.mat mult.mat
-./compare strassen.mat mult.mat
-
+echo -n "Generating $1-sized matrix 1..." &&
+./generate $1 1.mat &&
+echo " Ok" &&
+echo -n "Generating $1-sized matrix 2..." &&
+./generate $1 2.mat &&
+echo " Ok" &&
+echo -n "Computing strassen algorithm..." &&
+./strassen 1.mat 2.mat strassen.mat &&
+echo " Ok" &&
+echo -n "Computing normal algorithm..." &&
+./mult 1.mat 2.mat mult.mat &&
+echo " Ok" &&
+echo -n "Comparing results... " &&
+./compare strassen.mat mult.mat &&
 echo
