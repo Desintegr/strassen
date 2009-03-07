@@ -19,6 +19,7 @@ Matrix::Matrix(const size_t size, const bool random):
      m_data(new double[m_alloc_size * m_alloc_size])
 {
      if(random) {
+          #pragma omp parallel for
           for (index_t i = 0; i < m_real_size; ++i)
                for (index_t j = 0; j < m_real_size; ++j)
                     (*this)(i, j, rand() % 10000);
@@ -30,6 +31,7 @@ Matrix::Matrix(const double *data, const size_t size):
      m_real_size(size),
      m_data(new double[m_alloc_size * m_alloc_size])
 {
+     #pragma omp parallel for
      for (index_t i = 0; i < m_real_size; ++i)
           for (index_t j = 0; j < m_real_size; ++j)
                (*this)(i, j, data[i * m_real_size + j]);
@@ -45,6 +47,7 @@ Matrix::Matrix(std::ifstream &ifs)
      m_data = new double[m_alloc_size * m_alloc_size];
 
      double tmp;
+     #pragma omp parallel for
      for(index_t i = 0; i < m_real_size; ++i)
           for(index_t j = 0; j < m_real_size; ++j) {
                ifs >> tmp;
@@ -63,6 +66,7 @@ Matrix::Matrix(const Matrix &c00, const Matrix &c01, const Matrix &c10, const Ma
 
      const size_t s = c00.size();
 
+     #pragma omp parallel for
      for(index_t i = 0; i < s; ++i)
           for(index_t j = 0; j < s; ++j) {
                (*this)(i, j, c00(i, j));
@@ -77,6 +81,7 @@ Matrix::Matrix(const Matrix &m):
      m_real_size(m.size()),
      m_data(new double[m_alloc_size * m_alloc_size])
 {
+     #pragma omp parallel for
      for (index_t i = 0; i < m_alloc_size; ++i)
           for (index_t j = 0; j < m_alloc_size; ++j)
                (*this)(i, j, m(i, j));
@@ -132,6 +137,7 @@ Matrix Matrix::operator+(const Matrix &m) const
 
      Matrix r(m.size());
 
+     #pragma omp parallel for
      for(index_t i = 0; i < m_real_size; ++i)
           for(index_t j = 0; j < m_real_size; ++j)
                r(i, j, (*this)(i, j) + m(i, j));
@@ -145,6 +151,7 @@ Matrix Matrix::operator-(const Matrix &m) const
 
      Matrix r(m.size());
 
+     #pragma omp parallel for
      for(index_t i = 0; i < m_real_size; ++i)
           for(index_t j = 0; j < m_real_size; ++j)
                r(i, j, (*this)(i, j) - m(i, j));
@@ -160,6 +167,7 @@ Matrix Matrix::slice(const index_t i, const index_t j) const
      const size_t s = m_alloc_size / 2;
      Matrix m(s);
 
+     #pragma omp parallel for
      for(index_t k = 0; k < s; ++k)
           for(index_t l = 0; l < s; ++l)
                m(k, l, (*this)(k + i * s, l + j * s));

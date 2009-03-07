@@ -1,6 +1,6 @@
 CC=g++
-CFLAGS=-O3 -march=native -pipe -W -Wall
-LDFLAGS=
+CFLAGS=-O3 -march=native -pipe -W -Wall -fopenmp
+LDFLAGS=-fopenmp
 EXEC=strassen benchmark generate
 
 all: $(EXEC)
