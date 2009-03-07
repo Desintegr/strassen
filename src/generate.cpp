@@ -23,6 +23,10 @@ int main(int argc, char**argv)
      const Matrix m(size, true);
      std::ofstream out;
      out.open(argv[2]);
+     if(!out.is_open()) {
+          std::cout << "Error: cannot write to file " << argv[2] << std::endl;
+          return EXIT_FAILURE;
+     }
      m.write(out);
      out.close();
 
