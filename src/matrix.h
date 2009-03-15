@@ -10,6 +10,9 @@ typedef unsigned int size_t;
 class Matrix
 {
 public:
+     Matrix();
+     Matrix& operator=(const Matrix &m);
+     
      /*!
       * Constructeur de matrice carrée vide de taille size × size
       * @param random si vrai, remplit la matrice avec des données
@@ -54,7 +57,7 @@ public:
       * Multiplie par la matrice m en utilisant l'algorithme de
       * Strassen
       */
-     Matrix operator*(const Matrix &m) const;
+     Matrix mult(const Matrix &m, unsigned int deep = 0) const;
 
      /*!
       * Ajoute la matrice m

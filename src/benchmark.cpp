@@ -35,7 +35,7 @@ int main(int argc, char**argv)
      for(index_t i = 0; i < (unsigned int) it; ++i) {
           Matrix m1(size, true);
           Matrix m2(size, true);
-          Matrix m3 = m1 * m2;
+          Matrix m3 = m1.mult(m2);
      }
 
      const clock_t stop = clock();

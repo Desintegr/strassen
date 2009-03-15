@@ -7,6 +7,25 @@
 #include <cassert>
 #include <cstdlib>
 
+#include <cmath>
+
+Matrix::Matrix()
+{
+}
+
+Matrix& Matrix::operator=(const Matrix &m)
+{
+     m_alloc_size = m.m_alloc_size;
+     m_real_size = m.m_real_size;
+     m_data = new double[m_alloc_size * m_alloc_size];
+     
+     for (index_t i = 0; i < m_alloc_size; ++i)
+          for (index_t j = 0; j < m_alloc_size; ++j)
+               (*this)(i, j, m(i, j));
+ 
+     return *this;
+}
+
 Matrix::Matrix(const size_t size, const bool random):
      // L’algorithme de Strassen fonctionne avec des matrices carrées
      // dont la taille des côtés est une puissance de 2. Si la taille
@@ -18,12 +37,14 @@ Matrix::Matrix(const size_t size, const bool random):
      m_real_size(size),
      m_data(new double[m_alloc_size * m_alloc_size])
 {
-     if(random) {
-          #pragma omp parallel for
-          for (index_t i = 0; i < m_real_size; ++i)
-               for (index_t j = 0; j < m_real_size; ++j)
+     for (index_t i = 0; i < m_real_size; ++i)
+          for (index_t j = 0; j < m_real_size; ++j) {
+               if(random)
                     (*this)(i, j, rand() % 10000);
-     }
+               else
+                    (*this)(i, j, 0);
+          }
+     
 }
 
 Matrix::Matrix(const double *data, const size_t size):
@@ -31,7 +52,6 @@ Matrix::Matrix(const double *data, const size_t size):
      m_real_size(size),
      m_data(new double[m_alloc_size * m_alloc_size])
 {
-     #pragma omp parallel for
      for (index_t i = 0; i < m_real_size; ++i)
           for (index_t j = 0; j < m_real_size; ++j)
                (*this)(i, j, data[i * m_real_size + j]);
@@ -47,7 +67,6 @@ Matrix::Matrix(std::ifstream &ifs)
      m_data = new double[m_alloc_size * m_alloc_size];
 
      double tmp;
-     #pragma omp parallel for
      for(index_t i = 0; i < m_real_size; ++i)
           for(index_t j = 0; j < m_real_size; ++j) {
                ifs >> tmp;
@@ -66,7 +85,6 @@ Matrix::Matrix(const Matrix &c00, const Matrix &c01, const Matrix &c10, const Ma
 
      const size_t s = c00.size();
 
-     #pragma omp parallel for
      for(index_t i = 0; i < s; ++i)
           for(index_t j = 0; j < s; ++j) {
                (*this)(i, j, c00(i, j));
@@ -81,7 +99,6 @@ Matrix::Matrix(const Matrix &m):
      m_real_size(m.size()),
      m_data(new double[m_alloc_size * m_alloc_size])
 {
-     #pragma omp parallel for
      for (index_t i = 0; i < m_alloc_size; ++i)
           for (index_t j = 0; j < m_alloc_size; ++j)
                (*this)(i, j, m(i, j));
@@ -92,7 +109,7 @@ Matrix::~Matrix()
      delete[] m_data;
 }
 
-Matrix Matrix::operator*(const Matrix &m) const
+Matrix Matrix::mult(const Matrix &m, unsigned int deep) const
 {
      assert(m_real_size == m.size());
 
@@ -106,25 +123,61 @@ Matrix Matrix::operator*(const Matrix &m) const
           const Matrix a01 = slice(0, 1);
           const Matrix a10 = slice(1, 0);
           const Matrix a11 = slice(1, 1);
-
+          
           const Matrix b00 = m.slice(0, 0);
           const Matrix b01 = m.slice(0, 1);
           const Matrix b10 = m.slice(1, 0);
           const Matrix b11 = m.slice(1, 1);
 
-          const Matrix m1 = (a00 + a11) * (b00 + b11);
-          const Matrix m2 = (a10 + a11) *  b00;
-          const Matrix m3 =        a00  * (b01 - b11);
-          const Matrix m4 =        a11  * (b10 - b00);
-          const Matrix m5 = (a00 + a01) *  b11;
-          const Matrix m6 = (a10 - a00) * (b00 + b01);
-          const Matrix m7 = (a01 - a11) * (b10 + b11);
-
+          Matrix m1;
+          Matrix m2;
+          Matrix m3;
+          Matrix m4;
+          Matrix m5;
+          Matrix m6;
+          Matrix m7;
+          
+          #pragma omp parallel if (deep < log2(m_alloc_size) / 2)
+          //#pragma omp parallel if (false)
+          {
+               #pragma omp sections
+               {
+                    #pragma omp section
+                    {
+                         m1 = (a00 + a11).mult((b00 + b11), deep + 1);
+                    }
+                    #pragma omp section
+                    {
+                         m2 = (a10 + a11).mult(b00, deep + 1);
+                    }
+                    #pragma omp section
+                    {
+                         m3 = a00.mult((b01 - b11), deep + 1);
+                    }
+                    #pragma omp section
+                    {
+                         m4 = a11.mult((b10 - b00), deep + 1);
+                    }
+                    #pragma omp section
+                    {
+                         m5 = (a00 + a01).mult(b11, deep + 1);
+                    }
+                    #pragma omp section
+                    {
+                         m6 = (a10 - a00).mult((b00 + b01), deep + 1);
+                    }
+                    #pragma omp section
+                    {
+                         m7 = (a01 - a11).mult((b10 + b11), deep + 1);
+                    }
+               }
+          }
+                    
           const Matrix c00 = m1 + m4 - m5 + m7;
           const Matrix c01 = m3 + m5;
           const Matrix c10 = m2 + m4;
           const Matrix c11 = m1 - m2 + m3 + m6;
-
+          
           Matrix r(c00, c01, c10, c11);
           r.m_real_size = m.size(); // on remet la taille correcte
           return r;
@@ -136,8 +189,7 @@ Matrix Matrix::operator+(const Matrix &m) const
      assert(m_real_size == m.size());
 
      Matrix r(m.size());
-
-     #pragma omp parallel for
+     
      for(index_t i = 0; i < m_real_size; ++i)
           for(index_t j = 0; j < m_real_size; ++j)
                r(i, j, (*this)(i, j) + m(i, j));
@@ -151,7 +203,6 @@ Matrix Matrix::operator-(const Matrix &m) const
 
      Matrix r(m.size());
 
-     #pragma omp parallel for
      for(index_t i = 0; i < m_real_size; ++i)
           for(index_t j = 0; j < m_real_size; ++j)
                r(i, j, (*this)(i, j) - m(i, j));
@@ -167,7 +218,6 @@ Matrix Matrix::slice(const index_t i, const index_t j) const
      const size_t s = m_alloc_size / 2;
      Matrix m(s);
 
-     #pragma omp parallel for
      for(index_t k = 0; k < s; ++k)
           for(index_t l = 0; l < s; ++l)
                m(k, l, (*this)(k + i * s, l + j * s));

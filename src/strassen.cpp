@@ -36,7 +36,7 @@ int main(int argc, char **argv)
     std::cout << "Error: cannot write to file " << argv[1] << std::endl;
     return EXIT_FAILURE;
   }
-  Matrix m3 = m1 * m2;
+  Matrix m3 = m1.mult(m2);
   m3.write(out);
   out.close();
 
