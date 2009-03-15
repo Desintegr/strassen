@@ -10,11 +10,13 @@ typedef unsigned int size_t;
 class Matrix
 {
 public:
-     Matrix();
-     Matrix& operator=(const Matrix &m);
-     
      /*!
-      * Constructeur de matrice carrée vide de taille size × size
+      * Constructeur de matrice par défaut (de taille 0)
+      */
+     Matrix();
+
+     /*!
+      * Constructeur de matrice carrée de taille size × size
       * @param random si vrai, remplit la matrice avec des données
       * aléatoires
       */
@@ -22,7 +24,7 @@ public:
 
      /*!
       * Constructeur de matrice carrée de taille size × size à partir
-      * des données contenues dans le tableau data
+      * des données pointées par data
       */
      Matrix(const double *data, const size_t size);
 
@@ -49,15 +51,22 @@ public:
      Matrix(const Matrix &m);
 
      /*!
-      * Desctructeur de matrice
+      * Destructeur de matrice
       */
      ~Matrix();
 
      /*!
-      * Multiplie par la matrice m en utilisant l'algorithme de
-      * Strassen
+      * Affectation
       */
-     Matrix mult(const Matrix &m, unsigned int deep = 0) const;
+     Matrix& operator=(const Matrix &m);
+
+     /*!
+      * Multiplie par la matrice m
+      */
+     inline Matrix operator*(const Matrix &m) const
+     {
+          return strassen(m);
+     }
 
      /*!
       * Ajoute la matrice m
@@ -121,6 +130,13 @@ private:
       * -----------
       */
      Matrix slice(const index_t i, const index_t j) const;
+
+     /*!
+      * Multiplie par la matrice m en utilisant l'algorithme de
+      * Strassen
+      * @param profondeur de la récursion parallèle
+      */
+     Matrix strassen(const Matrix &m, unsigned int deep = 0) const;
 
      /*!
       * La taille allouée

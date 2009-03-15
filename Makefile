@@ -1,6 +1,15 @@
+OPENMP=1
+
 CC=g++
-CFLAGS=-O3 -march=native -pipe -W -Wall -fopenmp
+
+ifeq ($(OPENMP), 1)
+CFLAGS=-O3 -march=native -pipe -W -Wall -fopenmp -DOPENMP -DNDEBUG
 LDFLAGS=-fopenmp
+else
+CFLAGS=-O3 -march=native -pipe -W -Wall -DNDEBUG
+LDFLAGS=
+endif
+
 EXEC=strassen benchmark generate
 
 all: $(EXEC)
