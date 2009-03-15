@@ -23,12 +23,6 @@ public:
      Matrix(const size_t size, const bool random = false);
 
      /*!
-      * Constructeur de matrice carrée de taille size × size à partir
-      * des données pointées par data
-      */
-     Matrix(const double *data, const size_t size);
-
-     /*!
       * Constructeur de matrice à partir d'un flux de fichier
       */
      Matrix(std::ifstream &ifs);
@@ -51,6 +45,11 @@ public:
      Matrix(const Matrix &m);
 
      /*!
+      * Constructeur de déplacement
+      */
+     Matrix(Matrix &&m);
+
+     /*!
       * Destructeur de matrice
       */
      ~Matrix();
@@ -58,7 +57,7 @@ public:
      /*!
       * Affectation
       */
-     Matrix& operator=(const Matrix &m);
+     Matrix& operator=(Matrix &&m);
 
      /*!
       * Multiplie par la matrice m

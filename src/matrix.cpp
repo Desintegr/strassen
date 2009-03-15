@@ -28,23 +28,9 @@ Matrix::Matrix(const size_t size, const bool random):
      m_data(new double[m_alloc_size * m_alloc_size])
 {
      for (index_t i = 0; i < m_real_size; ++i)
-          for (index_t j = 0; j < m_real_size; ++j) {
+          for (index_t j = 0; j < m_real_size; ++j)
                if(random)
                     (*this)(i, j, rand() % 10000);
-               else
-                    (*this)(i, j, 0);
-          }
-
-}
-
-Matrix::Matrix(const double *data, const size_t size):
-     m_alloc_size(nextPowerOf2(size)),
-     m_real_size(size),
-     m_data(new double[m_alloc_size * m_alloc_size])
-{
-     for (index_t i = 0; i < m_real_size; ++i)
-          for (index_t j = 0; j < m_real_size; ++j)
-               (*this)(i, j, data[i * m_real_size + j]);
 }
 
 Matrix::Matrix(std::ifstream &ifs)
@@ -94,20 +80,30 @@ Matrix::Matrix(const Matrix &m):
                (*this)(i, j, m(i, j));
 }
 
+Matrix::Matrix(Matrix &&m):
+     m_alloc_size(m.allocSize()),
+     m_real_size(m.size()),
+     m_data(m.m_data)
+{
+     m.m_alloc_size = 0;
+     m.m_real_size = 0;
+     m.m_data = NULL;
+}
+
 Matrix::~Matrix()
 {
      delete[] m_data;
 }
 
-Matrix& Matrix::operator=(const Matrix &m)
+Matrix& Matrix::operator=(Matrix &&m)
 {
-     m_alloc_size = m.m_alloc_size;
-     m_real_size = m.m_real_size;
-     m_data = new double[m_alloc_size * m_alloc_size];
+     m_alloc_size = m.allocSize();
+     m_real_size = m.size();
+     m_data = m.m_data;
 
-     for (index_t i = 0; i < m_alloc_size; ++i)
-          for (index_t j = 0; j < m_alloc_size; ++j)
-               (*this)(i, j, m(i, j));
+     m.m_alloc_size = 0;
+     m.m_real_size = 0;
+     m.m_data = NULL;
 
      return *this;
 }

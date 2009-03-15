@@ -3,10 +3,10 @@ OPENMP=1
 CC=g++
 
 ifeq ($(OPENMP), 1)
-CFLAGS=-O3 -march=native -pipe -W -Wall -fopenmp -DOPENMP -DNDEBUG
+CFLAGS=-O3 -march=native -pipe -std=c++0x -W -Wall -fopenmp -DOPENMP -DNDEBUG
 LDFLAGS=-fopenmp
 else
-CFLAGS=-O3 -march=native -pipe -W -Wall -DNDEBUG
+CFLAGS=-O3 -march=native -pipe -std=c++0x -W -Wall -DNDEBUG
 LDFLAGS=
 endif
 
