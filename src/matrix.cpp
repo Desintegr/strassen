@@ -141,39 +141,22 @@ Matrix Matrix::strassen(const Matrix &m, unsigned int deep) const
           Matrix m6;
           Matrix m7;
 
-#pragma omp parallel if (deep < (log2(m_alloc_size) / 2))
+#pragma omp parallel sections if (deep < (log2(m_alloc_size)) / 2 )
           {
-#pragma omp sections
-               {
 #pragma omp section
-                    {
-                         m1 = (a00 + a11).strassen((b00 + b11), deep + 1);
-                    }
+               m1 = (a00 + a11).strassen((b00 + b11), deep + 1);
 #pragma omp section
-                    {
-                         m2 = (a10 + a11).strassen(b00, deep + 1);
-                    }
+               m2 = (a10 + a11).strassen(b00, deep + 1);
 #pragma omp section
-                    {
-                         m3 = a00.strassen((b01 - b11), deep + 1);
-                    }
+               m3 = a00.strassen((b01 - b11), deep + 1);
 #pragma omp section
-                    {
-                         m4 = a11.strassen((b10 - b00), deep + 1);
-                    }
+               m4 = a11.strassen((b10 - b00), deep + 1);
 #pragma omp section
-                    {
-                         m5 = (a00 + a01).strassen(b11, deep + 1);
-                    }
+               m5 = (a00 + a01).strassen(b11, deep + 1);
 #pragma omp section
-                    {
-                         m6 = (a10 - a00).strassen((b00 + b01), deep + 1);
-                    }
+               m6 = (a10 - a00).strassen((b00 + b01), deep + 1);
 #pragma omp section
-                    {
-                         m7 = (a01 - a11).strassen((b10 + b11), deep + 1);
-                    }
-               }
+               m7 = (a01 - a11).strassen((b10 + b11), deep + 1);
           }
 #else
           const Matrix m1 = (a00 + a11) * (b00 + b11);
