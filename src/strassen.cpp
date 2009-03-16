@@ -46,7 +46,7 @@ int main(int argc, char **argv)
      omp_set_nested(true);
 #endif
 
-     Matrix m3 = m1 * m2;
+     const Matrix m3 = m1 * m2;
      m3.write(out);
      out.close();
 

@@ -35,9 +35,9 @@ int main(int argc, char **argv)
 #endif
 
      for(index_t i = 0; i < (unsigned int) it; ++i) {
-          Matrix m1(size, true);
-          Matrix m2(size, true);
-          Matrix m3 = m1 * m2;
+          const Matrix m1(size, true);
+          const Matrix m2(size, true);
+          const Matrix m3 = m1 * m2;
      }
 
      return EXIT_SUCCESS;

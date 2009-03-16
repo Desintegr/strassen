@@ -27,10 +27,11 @@ Matrix::Matrix(const size_t size, const bool random):
      m_real_size(size),
      m_data(new double[m_alloc_size * m_alloc_size])
 {
-     for (index_t i = 0; i < m_real_size; ++i)
-          for (index_t j = 0; j < m_real_size; ++j)
-               if(random)
+     if(random) {
+          for (index_t i = 0; i < m_real_size; ++i)
+               for (index_t j = 0; j < m_real_size; ++j)
                     (*this)(i, j, rand() % 10000);
+     }
 }
 
 Matrix::Matrix(std::ifstream &ifs)
@@ -51,8 +52,8 @@ Matrix::Matrix(std::ifstream &ifs)
 }
 
 Matrix::Matrix(const Matrix &c00, const Matrix &c01, const Matrix &c10, const Matrix &c11):
-     m_alloc_size(c11.allocSize() * 2),
-     m_real_size(c11.size() * 2),
+     m_alloc_size(c00.allocSize() * 2),
+     m_real_size(c00.size() * 2),
      m_data(new double[m_alloc_size * m_alloc_size])
 {
      assert(c00.size() == c01.size()
