@@ -26,7 +26,10 @@ generate: src/generate.o src/matrix.o
 %.o: %.cpp
 	$(CC) $(CFLAGS) -c $< -o $@
 
-.PHONY: clean distclean
+.PHONY: doc clean distclean
+
+doc:
+	doxygen doxygen.conf
 
 clean:
 	rm -rf src/*.o
