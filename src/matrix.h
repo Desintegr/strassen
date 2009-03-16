@@ -45,7 +45,7 @@ public:
      Matrix(const Matrix &m);
 
      /*!
-      * Constructeur de déplacement
+      * Constructeur par déplacement
       */
      Matrix(Matrix &&m);
 
@@ -55,17 +55,14 @@ public:
      ~Matrix();
 
      /*!
-      * Affectation
+      * Affectation par déplacement
       */
      Matrix& operator=(Matrix &&m);
 
      /*!
       * Multiplie par la matrice m
       */
-     inline Matrix operator*(const Matrix &m) const
-     {
-          return strassen(m);
-     }
+     Matrix operator*(const Matrix &m) const;
 
      /*!
       * Ajoute la matrice m
@@ -80,31 +77,22 @@ public:
      /*!
       * Retourne l'élément à la position i,j
       */
-     inline double operator()(const size_t i, const size_t j) const
-     {
-          return m_data[i * m_alloc_size + j];
-     }
+     double operator()(const size_t i, const size_t j) const;
 
      /*!
       * Met la valeur v à la position i,j
       */
-     inline void operator()(const size_t i, const size_t j, const double v)
-     {
-          m_data[i * m_alloc_size + j] = v;
-     }
+     void operator()(const size_t i, const size_t j, const double v);
 
      /*!
       * Retourne la taille réelle de la matrice
       */
-     inline size_t size() const
-     {
-          return m_real_size;
-     }
+     size_t size() const;
 
      /*!
       * Permet d'afficher la matrice dans un flux
       */
-     void print(std::ostream &os) const;
+     void print(std::ostream &os = std::cout) const;
 
      /*!
       * Écrit la matrice dans un flux de fichier
@@ -115,10 +103,7 @@ private:
      /*!
       * Retour la taille allouée de la matrice
       */
-     inline size_t allocSize() const
-     {
-          return m_alloc_size;
-     }
+     size_t allocSize() const;
 
      /*!
       * Retourne la sous-matrice ij
@@ -150,8 +135,33 @@ private:
      /*!
       * Les données
       */
-     double* m_data;
+     double *m_data;
 };
+
+inline Matrix Matrix::operator*(const Matrix &m) const
+{
+     return strassen(m);
+}
+
+inline double Matrix::operator()(const size_t i, const size_t j) const
+{
+     return m_data[i * m_alloc_size + j];
+}
+
+inline void Matrix::operator()(const size_t i, const size_t j, const double v)
+{
+     m_data[i * m_alloc_size + j] = v;
+}
+
+inline size_t Matrix::size() const
+{
+     return m_real_size;
+}
+
+inline size_t Matrix::allocSize() const
+{
+     return m_alloc_size;
+}
 
 /*!
  * Retourne la puissance de 2 supérieure ou égale à v
