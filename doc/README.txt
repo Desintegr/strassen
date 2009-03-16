@@ -1,5 +1,9 @@
 - contenu de l'archive
 
+- explication de l'installation :
+    - copier les fichiers à partir de devoir
+    - OPENMP=0/1 dans Makefile
+
 - on a gardé notre version la plus performante : C++ / OpenMP
 - on a essayé d'autres versions :
     - version dérécursivée avec pthread
@@ -16,6 +20,6 @@ C++ / OpenMP :
     - utilisation du « nested parallelism » d'OpenMP
     - ce //isme est limité au niveau de la récursion par la formule log2(taille_matrice)/2 et nous permet d'obtenir un bon compromis entre le nombre de calcul effectué et le nombre de threads créés. Notre version OpenMP nous permet de gagner environ 12% par rapport à la même version sans OpenMP.
 
-mettre tableau résumé, expliquer tests (5 fois)
+mettre tableau résumé, expliquer tests (5 fois), commande time
 mettre graphique
 préciser le processeur utilisé
