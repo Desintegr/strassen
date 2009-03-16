@@ -28,18 +28,6 @@ public:
      Matrix(std::ifstream &ifs);
 
      /*!
-      * Constructeur de matrice à partir de 4 sous-matrices
-      *
-      * La nouvelle matrice construite est :
-      * -------------
-      * | c00 | c01 |
-      * |-----------|
-      * | c10 | c11 |
-      * -------------
-      */
-     Matrix(const Matrix &c00, const Matrix &c01, const Matrix &c10, const Matrix &c11);
-
-     /*!
       * Constructeur de recopie
       */
      Matrix(const Matrix &m);
@@ -101,9 +89,23 @@ public:
 
 private:
      /*!
-      * Retour la taille allouée de la matrice
+      * Constructeur de matrice à partir de 4 sous-matrices
+      *
+      * La nouvelle matrice construite est :
+      * -------------
+      * | c00 | c01 |
+      * |-----------|
+      * | c10 | c11 |
+      * -------------
       */
-     size_t allocSize() const;
+     Matrix(const Matrix &c00, const Matrix &c01, const Matrix &c10, const Matrix &c11);
+
+     /*!
+      * Multiplie par la matrice m en utilisant l'algorithme de
+      * Strassen
+      * @param profondeur de la récursion parallèle
+      */
+     Matrix strassen(const Matrix &m, unsigned int deep = 0) const;
 
      /*!
       * Retourne la sous-matrice ij
@@ -116,11 +118,9 @@ private:
      Matrix slice(const index_t i, const index_t j) const;
 
      /*!
-      * Multiplie par la matrice m en utilisant l'algorithme de
-      * Strassen
-      * @param profondeur de la récursion parallèle
+      * Retour la taille allouée de la matrice
       */
-     Matrix strassen(const Matrix &m, unsigned int deep = 0) const;
+     size_t allocSize() const;
 
      /*!
       * La taille allouée

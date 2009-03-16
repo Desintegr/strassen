@@ -96,19 +96,6 @@ Matrix::~Matrix()
      delete[] m_data;
 }
 
-Matrix& Matrix::operator=(Matrix &&m)
-{
-     m_alloc_size = m.allocSize();
-     m_real_size = m.size();
-     m_data = m.m_data;
-
-     m.m_alloc_size = 0;
-     m.m_real_size = 0;
-     m.m_data = NULL;
-
-     return *this;
-}
-
 Matrix Matrix::strassen(const Matrix &m, unsigned int deep) const
 {
      assert(m_real_size == m.size());
@@ -173,6 +160,19 @@ Matrix Matrix::strassen(const Matrix &m, unsigned int deep) const
           r.m_real_size = m.size(); // on remet la taille correcte
           return r;
      }
+}
+
+Matrix& Matrix::operator=(Matrix &&m)
+{
+     m_alloc_size = m.allocSize();
+     m_real_size = m.size();
+     m_data = m.m_data;
+
+     m.m_alloc_size = 0;
+     m.m_real_size = 0;
+     m.m_data = NULL;
+
+     return *this;
 }
 
 Matrix Matrix::operator+(const Matrix &m) const
