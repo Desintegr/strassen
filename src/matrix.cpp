@@ -137,7 +137,7 @@ Matrix Matrix::strassen(const Matrix &m, unsigned int deep) const
           Matrix m6;
           Matrix m7;
 
-#pragma omp parallel sections if (deep < (log2(m_alloc_size)) / 2 )
+#pragma omp parallel sections if (deep < (log2(m_alloc_size) / 2 ))
           {
 #pragma omp section
                m1 = (a00 + a11).strassen((b00 + b11), deep + 1);
