@@ -23,3 +23,5 @@ C++ / OpenMP :
 mettre tableau résumé, expliquer tests (5 fois), commande time
 mettre graphique
 préciser le processeur utilisé
+
+dire qu'on voulait essayer avec plus de coeurs, mais pas de machines sous la main
