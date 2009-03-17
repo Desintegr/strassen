@@ -15,7 +15,7 @@
   </div>
 <h1>/home/desintegr/Documents/Cours/2008-2009/S2/Multi-cœurs/strassen/src/benchmark.cpp</h1><a href="benchmark_8cpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#include "<a class="code" href="matrix_8h.html">matrix.h</a>"</span>
 <a name="l00002"></a>00002 
-<a name="l00003"></a>00003 <span class="preprocessor">#ifdef OPENMP</span>
+<a name="l00003"></a>00003 <span class="preprocessor">#ifdef _OPENMP</span>
 <a name="l00004"></a>00004 <span class="preprocessor"></span><span class="preprocessor">#include &lt;omp.h&gt;</span>
 <a name="l00005"></a>00005 <span class="preprocessor">#endif</span>
 <a name="l00006"></a>00006 <span class="preprocessor"></span>
@@ -44,7 +44,7 @@
 <a name="l00029"></a>00029           <span class="keywordflow">return</span> EXIT_FAILURE;
 <a name="l00030"></a>00030      }
 <a name="l00031"></a>00031 
-<a name="l00032"></a>00032 <span class="preprocessor">#ifdef OPENMP</span>
+<a name="l00032"></a>00032 <span class="preprocessor">#ifdef _OPENMP</span>
 <a name="l00033"></a>00033 <span class="preprocessor"></span>     <span class="comment">// on active les sections parallèles imbriquées</span>
 <a name="l00034"></a>00034      omp_set_nested(<span class="keyword">true</span>);
 <a name="l00035"></a>00035 <span class="preprocessor">#endif</span>
@@ -58,7 +58,7 @@
 <a name="l00043"></a>00043      <span class="keywordflow">return</span> EXIT_SUCCESS;
 <a name="l00044"></a>00044 }
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Généré le Tue Mar 17 11:34:45 2009 pour Strassen par&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Généré le Tue Mar 17 22:28:30 2009 pour Strassen par&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

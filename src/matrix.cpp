@@ -4,7 +4,11 @@
 #include <iomanip>
 #include <iostream>
 
+#ifndef ASSERT_DEBUG
+#define NDEBUG
+#endif
 #include <cassert>
+
 #include <cstdlib>
 
 #include <cmath>
@@ -116,7 +120,7 @@ Matrix Matrix::strassen(const Matrix &m, unsigned int deep) const
           const Matrix b10 = m.slice(1, 0);
           const Matrix b11 = m.slice(1, 1);
 
-#ifdef OPENMP
+#ifdef _OPENMP
           Matrix m1;
           Matrix m2;
           Matrix m3;
@@ -125,21 +129,21 @@ Matrix Matrix::strassen(const Matrix &m, unsigned int deep) const
           Matrix m6;
           Matrix m7;
 
-#pragma omp parallel sections if (deep < (log2(m_alloc_size) / 2 ))
+          #pragma omp parallel sections if (deep < (log2(m_alloc_size) / 2 ))
           {
-#pragma omp section
+               #pragma omp section
                m1 = (a00 + a11).strassen((b00 + b11), deep + 1);
-#pragma omp section
+               #pragma omp section
                m2 = (a10 + a11).strassen(b00, deep + 1);
-#pragma omp section
+               #pragma omp section
                m3 = a00.strassen((b01 - b11), deep + 1);
-#pragma omp section
+               #pragma omp section
                m4 = a11.strassen((b10 - b00), deep + 1);
-#pragma omp section
+               #pragma omp section
                m5 = (a00 + a01).strassen(b11, deep + 1);
-#pragma omp section
+               #pragma omp section
                m6 = (a10 - a00).strassen((b00 + b01), deep + 1);
-#pragma omp section
+               #pragma omp section
                m7 = (a01 - a11).strassen((b10 + b11), deep + 1);
           }
 #else
@@ -218,7 +222,7 @@ Matrix Matrix::slice(const index_t i, const index_t j) const
 
 void Matrix::print(std::ostream &os) const
 {
-#ifdef DEBUG
+#ifdef MATRIX_DEBUG
      /*
       * Affiche la matrice complète (allouée) (avec les lignes et les
       * colonnes remplies de 0)

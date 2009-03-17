@@ -1,6 +1,6 @@
 #include "matrix.h"
 
-#ifdef OPENMP
+#ifdef _OPENMP
 #include <omp.h>
 #endif
 
@@ -29,7 +29,7 @@ int main(int argc, char **argv)
           return EXIT_FAILURE;
      }
 
-#ifdef OPENMP
+#ifdef _OPENMP
      // on active les sections parallèles imbriquées
      omp_set_nested(true);
 #endif
