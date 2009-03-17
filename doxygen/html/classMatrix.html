@@ -1,0 +1,687 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Strassen: Référence de la classe Matrix</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Généré par Doxygen 1.5.6 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Page&nbsp;principale</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="annotated.html"><span>Liste&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="functions.html"><span>Membres&nbsp;de&nbsp;classe</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Référence de la classe Matrix</h1><!-- doxytag: class="Matrix" --><code>#include &lt;<a class="el" href="matrix_8h-source.html">matrix.h</a>&gt;</code>
+<p>
+
+<p>
+<a href="classMatrix-members.html">Liste de tous les membres</a><table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Fonctions membres publiques</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatrix.html#2dba13c45127354c9f75ef576f49269b">Matrix</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatrix.html#7be51bc039a3f8a94645ee21d6519607">Matrix</a> (const <a class="el" href="matrix_8h.html#7c94ea6f8948649f8d181ae55911eeaf">size_t</a> size, const bool random=false)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatrix.html#cd4ce32c0cdfc70821ed725e6e865346">Matrix</a> (std::ifstream &amp;ifs)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatrix.html#765f4dcb51b6829311cc3e7576388423">Matrix</a> (const <a class="el" href="classMatrix.html">Matrix</a> &amp;m)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatrix.html#22080f0f451782d7107f97e2eed2643b">Matrix</a> (<a class="el" href="classMatrix.html">Matrix</a> &amp;&amp;m)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatrix.html#9b1c3627f573d78a2f08623fdfef990f">~Matrix</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classMatrix.html">Matrix</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatrix.html#1a35d832dd8b24417fc8ebd4b5432abb">operator=</a> (<a class="el" href="classMatrix.html">Matrix</a> &amp;&amp;m)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classMatrix.html">Matrix</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatrix.html#435aaecd9331c9ee02bdb5bba59b20a7">operator*</a> (const <a class="el" href="classMatrix.html">Matrix</a> &amp;m) const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classMatrix.html">Matrix</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatrix.html#b1a7aa2c86e8cce34b3761ed8c2d60ee">operator+</a> (const <a class="el" href="classMatrix.html">Matrix</a> &amp;m) const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classMatrix.html">Matrix</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatrix.html#e882f1b1cd7e3c7823e8e473894216dd">operator-</a> (const <a class="el" href="classMatrix.html">Matrix</a> &amp;m) const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatrix.html#af56a6b3042cb77fc378e9d0ed800bd2">operator()</a> (const <a class="el" href="matrix_8h.html#7c94ea6f8948649f8d181ae55911eeaf">size_t</a> i, const <a class="el" href="matrix_8h.html#7c94ea6f8948649f8d181ae55911eeaf">size_t</a> j) const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatrix.html#4997afaca97c3ee51b2a3d6cafac8316">operator()</a> (const <a class="el" href="matrix_8h.html#7c94ea6f8948649f8d181ae55911eeaf">size_t</a> i, const <a class="el" href="matrix_8h.html#7c94ea6f8948649f8d181ae55911eeaf">size_t</a> j, const double v)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="matrix_8h.html#7c94ea6f8948649f8d181ae55911eeaf">size_t</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatrix.html#cb77d5c75a5c9c796fe04732d424e0f1">size</a> () const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatrix.html#d275fb76d4001fab0ad1d72be75cf126">print</a> (std::ostream &amp;os=std::cout) const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatrix.html#714b957496afee4afe8f254523314112">write</a> (std::ofstream &amp;ofs) const </td></tr>
+
+<tr><td colspan="2"><br><h2>Fonctions membres privées</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatrix.html#244bc4278441e8571b3119f2ed11da87">Matrix</a> (const <a class="el" href="classMatrix.html">Matrix</a> &amp;c00, const <a class="el" href="classMatrix.html">Matrix</a> &amp;c01, const <a class="el" href="classMatrix.html">Matrix</a> &amp;c10, const <a class="el" href="classMatrix.html">Matrix</a> &amp;c11)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classMatrix.html">Matrix</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatrix.html#4dcb9eb25352d3fd0b737d008f4aa6ca">strassen</a> (const <a class="el" href="classMatrix.html">Matrix</a> &amp;m, unsigned int deep=0) const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classMatrix.html">Matrix</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatrix.html#7ed962d66fcd22f774cafa210f3887b1">slice</a> (const <a class="el" href="matrix_8h.html#6e99cb5242f54b9a5fefd46d2a8e77f8">index_t</a> i, const <a class="el" href="matrix_8h.html#6e99cb5242f54b9a5fefd46d2a8e77f8">index_t</a> j) const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="matrix_8h.html#7c94ea6f8948649f8d181ae55911eeaf">size_t</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatrix.html#5806dd5d3f56f02c2dad9ea46b985fab">allocSize</a> () const </td></tr>
+
+<tr><td colspan="2"><br><h2>Attributs privés</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="matrix_8h.html#7c94ea6f8948649f8d181ae55911eeaf">size_t</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatrix.html#c31ca6fedb97b8923c3930171efd6be9">m_alloc_size</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="matrix_8h.html#7c94ea6f8948649f8d181ae55911eeaf">size_t</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatrix.html#a48e19eec87b1ddfff18a0fcc445ded4">m_real_size</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">double *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatrix.html#5a2eb67fc660789c2848be680d7ec7a7">m_data</a></td></tr>
+
+</table>
+<hr><a name="_details"></a><h2>Description détaillée</h2>
+
+<p>Définition à la ligne <a class="el" href="matrix_8h-source.html#l00010">10</a> du fichier <a class="el" href="matrix_8h-source.html">matrix.h</a>.</p>
+<hr><h2>Documentation des constructeurs et destructeur</h2>
+<a class="anchor" name="2dba13c45127354c9f75ef576f49269b"></a><!-- doxytag: member="Matrix::Matrix" ref="2dba13c45127354c9f75ef576f49269b" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Matrix::Matrix           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Constructeur de matrice par défaut (de taille 0) 
+<p>Définition à la ligne <a class="el" href="matrix_8cpp-source.html#l00012">12</a> du fichier <a class="el" href="matrix_8cpp-source.html">matrix.cpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="7be51bc039a3f8a94645ee21d6519607"></a><!-- doxytag: member="Matrix::Matrix" ref="7be51bc039a3f8a94645ee21d6519607" args="(const size_t size, const bool random=false)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Matrix::Matrix           </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="matrix_8h.html#7c94ea6f8948649f8d181ae55911eeaf">size_t</a>&nbsp;</td>
+          <td class="paramname"> <em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&nbsp;</td>
+          <td class="paramname"> <em>random</em> = <code>false</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Constructeur de matrice carrée de taille size × size <dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>random</em>&nbsp;</td><td>si vrai, remplit la matrice avec des données aléatoires </td></tr>
+  </table>
+</dl>
+
+<p>Définition à la ligne <a class="el" href="matrix_8cpp-source.html#l00019">19</a> du fichier <a class="el" href="matrix_8cpp-source.html">matrix.cpp</a>.</p>
+
+<p>Références <a class="el" href="matrix_8h-source.html#l00133">m_real_size</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="cd4ce32c0cdfc70821ed725e6e865346"></a><!-- doxytag: member="Matrix::Matrix" ref="cd4ce32c0cdfc70821ed725e6e865346" args="(std::ifstream &amp;ifs)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Matrix::Matrix           </td>
+          <td>(</td>
+          <td class="paramtype">std::ifstream &amp;&nbsp;</td>
+          <td class="paramname"> <em>ifs</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Constructeur de matrice à partir d'un flux de fichier 
+<p>Définition à la ligne <a class="el" href="matrix_8cpp-source.html#l00037">37</a> du fichier <a class="el" href="matrix_8cpp-source.html">matrix.cpp</a>.</p>
+
+<p>Références <a class="el" href="matrix_8h-source.html#l00128">m_alloc_size</a>, <a class="el" href="matrix_8h-source.html#l00138">m_data</a>, <a class="el" href="matrix_8h-source.html#l00133">m_real_size</a>, <a class="el" href="matrix_8h-source.html#l00169">nextPowerOf2()</a>, et <a class="el" href="matrix_8h-source.html#l00156">size()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="765f4dcb51b6829311cc3e7576388423"></a><!-- doxytag: member="Matrix::Matrix" ref="765f4dcb51b6829311cc3e7576388423" args="(const Matrix &amp;m)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Matrix::Matrix           </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMatrix.html">Matrix</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>m</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Constructeur de recopie 
+<p>Définition à la ligne <a class="el" href="matrix_8cpp-source.html#l00074">74</a> du fichier <a class="el" href="matrix_8cpp-source.html">matrix.cpp</a>.</p>
+
+<p>Références <a class="el" href="matrix_8h-source.html#l00128">m_alloc_size</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="22080f0f451782d7107f97e2eed2643b"></a><!-- doxytag: member="Matrix::Matrix" ref="22080f0f451782d7107f97e2eed2643b" args="(Matrix &amp;&amp;m)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Matrix::Matrix           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMatrix.html">Matrix</a> &amp;&amp;&nbsp;</td>
+          <td class="paramname"> <em>m</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Constructeur par déplacement 
+<p>Définition à la ligne <a class="el" href="matrix_8cpp-source.html#l00084">84</a> du fichier <a class="el" href="matrix_8cpp-source.html">matrix.cpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="9b1c3627f573d78a2f08623fdfef990f"></a><!-- doxytag: member="Matrix::~Matrix" ref="9b1c3627f573d78a2f08623fdfef990f" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Matrix::~Matrix           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Destructeur de matrice 
+<p>Définition à la ligne <a class="el" href="matrix_8cpp-source.html#l00094">94</a> du fichier <a class="el" href="matrix_8cpp-source.html">matrix.cpp</a>.</p>
+
+<p>Références <a class="el" href="matrix_8h-source.html#l00138">m_data</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="244bc4278441e8571b3119f2ed11da87"></a><!-- doxytag: member="Matrix::Matrix" ref="244bc4278441e8571b3119f2ed11da87" args="(const Matrix &amp;c00, const Matrix &amp;c01, const Matrix &amp;c10, const Matrix &amp;c11)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Matrix::Matrix           </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMatrix.html">Matrix</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>c00</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMatrix.html">Matrix</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>c01</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMatrix.html">Matrix</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>c10</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMatrix.html">Matrix</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>c11</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Constructeur de matrice à partir de 4 sous-matrices<p>
+La nouvelle matrice construite est : ------------- | c00 | c01 | |-----------| | c10 | c11 | ------------- 
+<p>Définition à la ligne <a class="el" href="matrix_8cpp-source.html#l00054">54</a> du fichier <a class="el" href="matrix_8cpp-source.html">matrix.cpp</a>.</p>
+
+<p>Références <a class="el" href="matrix_8h-source.html#l00156">size()</a>.</p>
+
+</div>
+</div><p>
+<hr><h2>Documentation des fonctions membres</h2>
+<a class="anchor" name="1a35d832dd8b24417fc8ebd4b5432abb"></a><!-- doxytag: member="Matrix::operator=" ref="1a35d832dd8b24417fc8ebd4b5432abb" args="(Matrix &amp;&amp;m)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMatrix.html">Matrix</a> &amp; Matrix::operator=           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMatrix.html">Matrix</a> &amp;&amp;&nbsp;</td>
+          <td class="paramname"> <em>m</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Affectation par déplacement 
+<p>Définition à la ligne <a class="el" href="matrix_8cpp-source.html#l00165">165</a> du fichier <a class="el" href="matrix_8cpp-source.html">matrix.cpp</a>.</p>
+
+<p>Références <a class="el" href="matrix_8h-source.html#l00128">m_alloc_size</a>, <a class="el" href="matrix_8h-source.html#l00138">m_data</a>, et <a class="el" href="matrix_8h-source.html#l00133">m_real_size</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="435aaecd9331c9ee02bdb5bba59b20a7"></a><!-- doxytag: member="Matrix::operator*" ref="435aaecd9331c9ee02bdb5bba59b20a7" args="(const Matrix &amp;m) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMatrix.html">Matrix</a> Matrix::operator*           </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMatrix.html">Matrix</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>m</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Multiplie par la matrice m 
+<p>Définition à la ligne <a class="el" href="matrix_8h-source.html#l00141">141</a> du fichier <a class="el" href="matrix_8h-source.html">matrix.h</a>.</p>
+
+<p>Références <a class="el" href="matrix_8cpp-source.html#l00099">strassen()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="b1a7aa2c86e8cce34b3761ed8c2d60ee"></a><!-- doxytag: member="Matrix::operator+" ref="b1a7aa2c86e8cce34b3761ed8c2d60ee" args="(const Matrix &amp;m) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMatrix.html">Matrix</a> Matrix::operator+           </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMatrix.html">Matrix</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>m</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Ajoute la matrice m 
+<p>Définition à la ligne <a class="el" href="matrix_8cpp-source.html#l00178">178</a> du fichier <a class="el" href="matrix_8cpp-source.html">matrix.cpp</a>.</p>
+
+<p>Références <a class="el" href="matrix_8h-source.html#l00133">m_real_size</a>, et <a class="el" href="matrix_8h-source.html#l00156">size()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="e882f1b1cd7e3c7823e8e473894216dd"></a><!-- doxytag: member="Matrix::operator-" ref="e882f1b1cd7e3c7823e8e473894216dd" args="(const Matrix &amp;m) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMatrix.html">Matrix</a> Matrix::operator-           </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMatrix.html">Matrix</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>m</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Soustrait la matrice m 
+<p>Définition à la ligne <a class="el" href="matrix_8cpp-source.html#l00191">191</a> du fichier <a class="el" href="matrix_8cpp-source.html">matrix.cpp</a>.</p>
+
+<p>Références <a class="el" href="matrix_8h-source.html#l00133">m_real_size</a>, et <a class="el" href="matrix_8h-source.html#l00156">size()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="af56a6b3042cb77fc378e9d0ed800bd2"></a><!-- doxytag: member="Matrix::operator()" ref="af56a6b3042cb77fc378e9d0ed800bd2" args="(const size_t i, const size_t j) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double Matrix::operator()           </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="matrix_8h.html#7c94ea6f8948649f8d181ae55911eeaf">size_t</a>&nbsp;</td>
+          <td class="paramname"> <em>i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="matrix_8h.html#7c94ea6f8948649f8d181ae55911eeaf">size_t</a>&nbsp;</td>
+          <td class="paramname"> <em>j</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td> const<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne l'élément à la position i,j 
+<p>Définition à la ligne <a class="el" href="matrix_8h-source.html#l00146">146</a> du fichier <a class="el" href="matrix_8h-source.html">matrix.h</a>.</p>
+
+<p>Références <a class="el" href="matrix_8h-source.html#l00128">m_alloc_size</a>, et <a class="el" href="matrix_8h-source.html#l00138">m_data</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="4997afaca97c3ee51b2a3d6cafac8316"></a><!-- doxytag: member="Matrix::operator()" ref="4997afaca97c3ee51b2a3d6cafac8316" args="(const size_t i, const size_t j, const double v)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Matrix::operator()           </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="matrix_8h.html#7c94ea6f8948649f8d181ae55911eeaf">size_t</a>&nbsp;</td>
+          <td class="paramname"> <em>i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="matrix_8h.html#7c94ea6f8948649f8d181ae55911eeaf">size_t</a>&nbsp;</td>
+          <td class="paramname"> <em>j</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double&nbsp;</td>
+          <td class="paramname"> <em>v</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Met la valeur v à la position i,j 
+<p>Définition à la ligne <a class="el" href="matrix_8h-source.html#l00151">151</a> du fichier <a class="el" href="matrix_8h-source.html">matrix.h</a>.</p>
+
+<p>Références <a class="el" href="matrix_8h-source.html#l00128">m_alloc_size</a>, et <a class="el" href="matrix_8h-source.html#l00138">m_data</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="cb77d5c75a5c9c796fe04732d424e0f1"></a><!-- doxytag: member="Matrix::size" ref="cb77d5c75a5c9c796fe04732d424e0f1" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="matrix_8h.html#7c94ea6f8948649f8d181ae55911eeaf">size_t</a> Matrix::size           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne la taille réelle de la matrice 
+<p>Définition à la ligne <a class="el" href="matrix_8h-source.html#l00156">156</a> du fichier <a class="el" href="matrix_8h-source.html">matrix.h</a>.</p>
+
+<p>Références <a class="el" href="matrix_8h-source.html#l00133">m_real_size</a>.</p>
+
+<p>Référencé par <a class="el" href="matrix_8cpp-source.html#l00037">Matrix()</a>, <a class="el" href="matrix_8cpp-source.html#l00178">operator+()</a>, <a class="el" href="matrix_8cpp-source.html#l00191">operator-()</a>, <a class="el" href="matrix_8cpp-source.html#l00219">print()</a>, et <a class="el" href="matrix_8cpp-source.html#l00099">strassen()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="d275fb76d4001fab0ad1d72be75cf126"></a><!-- doxytag: member="Matrix::print" ref="d275fb76d4001fab0ad1d72be75cf126" args="(std::ostream &amp;os=std::cout) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Matrix::print           </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&nbsp;</td>
+          <td class="paramname"> <em>os</em> = <code>std::cout</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Permet d'afficher la matrice dans un flux 
+<p>Définition à la ligne <a class="el" href="matrix_8cpp-source.html#l00219">219</a> du fichier <a class="el" href="matrix_8cpp-source.html">matrix.cpp</a>.</p>
+
+<p>Références <a class="el" href="matrix_8h-source.html#l00128">m_alloc_size</a>, <a class="el" href="matrix_8h-source.html#l00133">m_real_size</a>, et <a class="el" href="matrix_8h-source.html#l00156">size()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="714b957496afee4afe8f254523314112"></a><!-- doxytag: member="Matrix::write" ref="714b957496afee4afe8f254523314112" args="(std::ofstream &amp;ofs) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Matrix::write           </td>
+          <td>(</td>
+          <td class="paramtype">std::ofstream &amp;&nbsp;</td>
+          <td class="paramname"> <em>ofs</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Écrit la matrice dans un flux de fichier 
+<p>Définition à la ligne <a class="el" href="matrix_8cpp-source.html#l00246">246</a> du fichier <a class="el" href="matrix_8cpp-source.html">matrix.cpp</a>.</p>
+
+<p>Références <a class="el" href="matrix_8h-source.html#l00133">m_real_size</a>.</p>
+
+<p>Référencé par <a class="el" href="generate_8cpp-source.html#l00008">main()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="4dcb9eb25352d3fd0b737d008f4aa6ca"></a><!-- doxytag: member="Matrix::strassen" ref="4dcb9eb25352d3fd0b737d008f4aa6ca" args="(const Matrix &amp;m, unsigned int deep=0) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMatrix.html">Matrix</a> Matrix::strassen           </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMatrix.html">Matrix</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>m</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&nbsp;</td>
+          <td class="paramname"> <em>deep</em> = <code>0</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td> const<code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Multiplie par la matrice m en utilisant l'algorithme de Strassen <dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>profondeur</em>&nbsp;</td><td>de la récursion parallèle </td></tr>
+  </table>
+</dl>
+
+<p>Définition à la ligne <a class="el" href="matrix_8cpp-source.html#l00099">99</a> du fichier <a class="el" href="matrix_8cpp-source.html">matrix.cpp</a>.</p>
+
+<p>Références <a class="el" href="matrix_8h-source.html#l00133">m_real_size</a>, <a class="el" href="matrix_8h-source.html#l00156">size()</a>, <a class="el" href="matrix_8cpp-source.html#l00204">slice()</a>, et <a class="el" href="matrix_8cpp-source.html#l00099">strassen()</a>.</p>
+
+<p>Référencé par <a class="el" href="matrix_8h-source.html#l00141">operator*()</a>, et <a class="el" href="matrix_8cpp-source.html#l00099">strassen()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="7ed962d66fcd22f774cafa210f3887b1"></a><!-- doxytag: member="Matrix::slice" ref="7ed962d66fcd22f774cafa210f3887b1" args="(const index_t i, const index_t j) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMatrix.html">Matrix</a> Matrix::slice           </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="matrix_8h.html#6e99cb5242f54b9a5fefd46d2a8e77f8">index_t</a>&nbsp;</td>
+          <td class="paramname"> <em>i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="matrix_8h.html#6e99cb5242f54b9a5fefd46d2a8e77f8">index_t</a>&nbsp;</td>
+          <td class="paramname"> <em>j</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td> const<code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne la sous-matrice ij ----------- | 00 | 01 | |---------| | 10 | 11 | ----------- 
+<p>Définition à la ligne <a class="el" href="matrix_8cpp-source.html#l00204">204</a> du fichier <a class="el" href="matrix_8cpp-source.html">matrix.cpp</a>.</p>
+
+<p>Références <a class="el" href="matrix_8h-source.html#l00128">m_alloc_size</a>.</p>
+
+<p>Référencé par <a class="el" href="matrix_8cpp-source.html#l00099">strassen()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="5806dd5d3f56f02c2dad9ea46b985fab"></a><!-- doxytag: member="Matrix::allocSize" ref="5806dd5d3f56f02c2dad9ea46b985fab" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="matrix_8h.html#7c94ea6f8948649f8d181ae55911eeaf">size_t</a> Matrix::allocSize           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [inline, private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retour la taille allouée de la matrice 
+<p>Définition à la ligne <a class="el" href="matrix_8h-source.html#l00161">161</a> du fichier <a class="el" href="matrix_8h-source.html">matrix.h</a>.</p>
+
+<p>Références <a class="el" href="matrix_8h-source.html#l00128">m_alloc_size</a>.</p>
+
+</div>
+</div><p>
+<hr><h2>Documentation des données membres</h2>
+<a class="anchor" name="c31ca6fedb97b8923c3930171efd6be9"></a><!-- doxytag: member="Matrix::m_alloc_size" ref="c31ca6fedb97b8923c3930171efd6be9" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="matrix_8h.html#7c94ea6f8948649f8d181ae55911eeaf">size_t</a> <a class="el" href="classMatrix.html#c31ca6fedb97b8923c3930171efd6be9">Matrix::m_alloc_size</a><code> [private]</code>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+La taille allouée 
+<p>Définition à la ligne <a class="el" href="matrix_8h-source.html#l00128">128</a> du fichier <a class="el" href="matrix_8h-source.html">matrix.h</a>.</p>
+
+<p>Référencé par <a class="el" href="matrix_8h-source.html#l00161">allocSize()</a>, <a class="el" href="matrix_8cpp-source.html#l00037">Matrix()</a>, <a class="el" href="matrix_8h-source.html#l00146">operator()()</a>, <a class="el" href="matrix_8cpp-source.html#l00165">operator=()</a>, <a class="el" href="matrix_8cpp-source.html#l00219">print()</a>, et <a class="el" href="matrix_8cpp-source.html#l00204">slice()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="a48e19eec87b1ddfff18a0fcc445ded4"></a><!-- doxytag: member="Matrix::m_real_size" ref="a48e19eec87b1ddfff18a0fcc445ded4" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="matrix_8h.html#7c94ea6f8948649f8d181ae55911eeaf">size_t</a> <a class="el" href="classMatrix.html#a48e19eec87b1ddfff18a0fcc445ded4">Matrix::m_real_size</a><code> [private]</code>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+La taille réelle 
+<p>Définition à la ligne <a class="el" href="matrix_8h-source.html#l00133">133</a> du fichier <a class="el" href="matrix_8h-source.html">matrix.h</a>.</p>
+
+<p>Référencé par <a class="el" href="matrix_8cpp-source.html#l00019">Matrix()</a>, <a class="el" href="matrix_8cpp-source.html#l00178">operator+()</a>, <a class="el" href="matrix_8cpp-source.html#l00191">operator-()</a>, <a class="el" href="matrix_8cpp-source.html#l00165">operator=()</a>, <a class="el" href="matrix_8cpp-source.html#l00219">print()</a>, <a class="el" href="matrix_8h-source.html#l00156">size()</a>, <a class="el" href="matrix_8cpp-source.html#l00099">strassen()</a>, et <a class="el" href="matrix_8cpp-source.html#l00246">write()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="5a2eb67fc660789c2848be680d7ec7a7"></a><!-- doxytag: member="Matrix::m_data" ref="5a2eb67fc660789c2848be680d7ec7a7" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double* <a class="el" href="classMatrix.html#5a2eb67fc660789c2848be680d7ec7a7">Matrix::m_data</a><code> [private]</code>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Les données 
+<p>Définition à la ligne <a class="el" href="matrix_8h-source.html#l00138">138</a> du fichier <a class="el" href="matrix_8h-source.html">matrix.h</a>.</p>
+
+<p>Référencé par <a class="el" href="matrix_8cpp-source.html#l00037">Matrix()</a>, <a class="el" href="matrix_8h-source.html#l00146">operator()()</a>, <a class="el" href="matrix_8cpp-source.html#l00165">operator=()</a>, et <a class="el" href="matrix_8cpp-source.html#l00094">~Matrix()</a>.</p>
+
+</div>
+</div><p>
+<hr>La documentation de cette classe a été générée à partir des fichiers suivants :<ul>
+<li>/home/desintegr/Documents/Cours/2008-2009/S2/Multi-cœurs/strassen/src/<a class="el" href="matrix_8h-source.html">matrix.h</a><li>/home/desintegr/Documents/Cours/2008-2009/S2/Multi-cœurs/strassen/src/<a class="el" href="matrix_8cpp-source.html">matrix.cpp</a></ul>
+</div>
+<hr size="1"><address style="text-align: right;"><small>Généré le Tue Mar 17 11:34:45 2009 pour Strassen par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
+</body>
+</html>

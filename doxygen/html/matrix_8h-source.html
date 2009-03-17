@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Strassen:  Fichier source de /home/desintegr/Documents/Cours/2008-2009/S2/Multi-cÅurs/strassen/src/matrix.h</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Généré par Doxygen 1.5.6 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Page&nbsp;principale</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+<h1>/home/desintegr/Documents/Cours/2008-2009/S2/Multi-cœurs/strassen/src/matrix.h</h1><a href="matrix_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#ifndef MATRIX_H</span>
+<a name="l00002"></a>00002 <span class="preprocessor"></span><span class="preprocessor">#define MATRIX_H</span>
+<a name="l00003"></a>00003 <span class="preprocessor"></span>
+<a name="l00004"></a>00004 <span class="preprocessor">#include &lt;fstream&gt;</span>
+<a name="l00005"></a>00005 <span class="preprocessor">#include &lt;iostream&gt;</span>
+<a name="l00006"></a>00006 
+<a name="l00007"></a><a class="code" href="matrix_8h.html#6e99cb5242f54b9a5fefd46d2a8e77f8">00007</a> <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="matrix_8h.html#6e99cb5242f54b9a5fefd46d2a8e77f8">index_t</a>;
+<a name="l00008"></a><a class="code" href="matrix_8h.html#7c94ea6f8948649f8d181ae55911eeaf">00008</a> <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="matrix_8h.html#7c94ea6f8948649f8d181ae55911eeaf">size_t</a>;
+<a name="l00009"></a>00009 
+<a name="l00010"></a><a class="code" href="classMatrix.html">00010</a> <span class="keyword">class </span><a class="code" href="classMatrix.html">Matrix</a>
+<a name="l00011"></a>00011 {
+<a name="l00012"></a>00012 <span class="keyword">public</span>:
+<a name="l00016"></a>00016      <a class="code" href="classMatrix.html#2dba13c45127354c9f75ef576f49269b">Matrix</a>();
+<a name="l00017"></a>00017 
+<a name="l00023"></a>00023      <a class="code" href="classMatrix.html#2dba13c45127354c9f75ef576f49269b">Matrix</a>(<span class="keyword">const</span> <span class="keywordtype">size_t</span> <a class="code" href="classMatrix.html#cb77d5c75a5c9c796fe04732d424e0f1">size</a>, <span class="keyword">const</span> <span class="keywordtype">bool</span> random = <span class="keyword">false</span>);
+<a name="l00024"></a>00024 
+<a name="l00028"></a>00028      <a class="code" href="classMatrix.html#2dba13c45127354c9f75ef576f49269b">Matrix</a>(std::ifstream &amp;ifs);
+<a name="l00029"></a>00029 
+<a name="l00033"></a>00033      <a class="code" href="classMatrix.html#2dba13c45127354c9f75ef576f49269b">Matrix</a>(<span class="keyword">const</span> <a class="code" href="classMatrix.html">Matrix</a> &amp;m);
+<a name="l00034"></a>00034 
+<a name="l00038"></a>00038      <a class="code" href="classMatrix.html#2dba13c45127354c9f75ef576f49269b">Matrix</a>(<a class="code" href="classMatrix.html">Matrix</a> &amp;&amp;m);
+<a name="l00039"></a>00039 
+<a name="l00043"></a>00043      <a class="code" href="classMatrix.html#9b1c3627f573d78a2f08623fdfef990f">~Matrix</a>();
+<a name="l00044"></a>00044 
+<a name="l00048"></a>00048      <a class="code" href="classMatrix.html">Matrix</a>&amp; <a class="code" href="classMatrix.html#1a35d832dd8b24417fc8ebd4b5432abb">operator=</a>(<a class="code" href="classMatrix.html">Matrix</a> &amp;&amp;m);
+<a name="l00049"></a>00049 
+<a name="l00053"></a>00053      <a class="code" href="classMatrix.html">Matrix</a> <a class="code" href="classMatrix.html#435aaecd9331c9ee02bdb5bba59b20a7">operator*</a>(<span class="keyword">const</span> <a class="code" href="classMatrix.html">Matrix</a> &amp;m) <span class="keyword">const</span>;
+<a name="l00054"></a>00054 
+<a name="l00058"></a>00058      <a class="code" href="classMatrix.html">Matrix</a> <a class="code" href="classMatrix.html#b1a7aa2c86e8cce34b3761ed8c2d60ee">operator+</a>(<span class="keyword">const</span> <a class="code" href="classMatrix.html">Matrix</a> &amp;m) <span class="keyword">const</span>;
+<a name="l00059"></a>00059 
+<a name="l00063"></a>00063      <a class="code" href="classMatrix.html">Matrix</a> <a class="code" href="classMatrix.html#e882f1b1cd7e3c7823e8e473894216dd">operator-</a>(<span class="keyword">const</span> <a class="code" href="classMatrix.html">Matrix</a> &amp;m) <span class="keyword">const</span>;
+<a name="l00064"></a>00064 
+<a name="l00068"></a>00068      <span class="keywordtype">double</span> <a class="code" href="classMatrix.html#af56a6b3042cb77fc378e9d0ed800bd2">operator()</a>(<span class="keyword">const</span> <span class="keywordtype">size_t</span> i, <span class="keyword">const</span> <span class="keywordtype">size_t</span> j) <span class="keyword">const</span>;
+<a name="l00069"></a>00069 
+<a name="l00073"></a>00073      <span class="keywordtype">void</span> <a class="code" href="classMatrix.html#af56a6b3042cb77fc378e9d0ed800bd2">operator()</a>(<span class="keyword">const</span> <span class="keywordtype">size_t</span> i, <span class="keyword">const</span> <span class="keywordtype">size_t</span> j, <span class="keyword">const</span> <span class="keywordtype">double</span> v);
+<a name="l00074"></a>00074 
+<a name="l00078"></a>00078      <span class="keywordtype">size_t</span> <a class="code" href="classMatrix.html#cb77d5c75a5c9c796fe04732d424e0f1">size</a>() <span class="keyword">const</span>;
+<a name="l00079"></a>00079 
+<a name="l00083"></a>00083      <span class="keywordtype">void</span> <a class="code" href="classMatrix.html#d275fb76d4001fab0ad1d72be75cf126">print</a>(std::ostream &amp;os = std::cout) <span class="keyword">const</span>;
+<a name="l00084"></a>00084 
+<a name="l00088"></a>00088      <span class="keywordtype">void</span> <a class="code" href="classMatrix.html#714b957496afee4afe8f254523314112">write</a>(std::ofstream &amp;ofs) <span class="keyword">const</span>;
+<a name="l00089"></a>00089 
+<a name="l00090"></a>00090 <span class="keyword">private</span>:
+<a name="l00101"></a>00101      <a class="code" href="classMatrix.html#2dba13c45127354c9f75ef576f49269b">Matrix</a>(<span class="keyword">const</span> <a class="code" href="classMatrix.html">Matrix</a> &amp;c00, <span class="keyword">const</span> <a class="code" href="classMatrix.html">Matrix</a> &amp;c01, <span class="keyword">const</span> <a class="code" href="classMatrix.html">Matrix</a> &amp;c10, <span class="keyword">const</span> <a class="code" href="classMatrix.html">Matrix</a> &amp;c11);
+<a name="l00102"></a>00102 
+<a name="l00108"></a>00108      <a class="code" href="classMatrix.html">Matrix</a> <a class="code" href="classMatrix.html#4dcb9eb25352d3fd0b737d008f4aa6ca">strassen</a>(<span class="keyword">const</span> <a class="code" href="classMatrix.html">Matrix</a> &amp;m, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> deep = 0) <span class="keyword">const</span>;
+<a name="l00109"></a>00109 
+<a name="l00118"></a>00118      <a class="code" href="classMatrix.html">Matrix</a> <a class="code" href="classMatrix.html#7ed962d66fcd22f774cafa210f3887b1">slice</a>(<span class="keyword">const</span> <a class="code" href="matrix_8h.html#6e99cb5242f54b9a5fefd46d2a8e77f8">index_t</a> i, <span class="keyword">const</span> <a class="code" href="matrix_8h.html#6e99cb5242f54b9a5fefd46d2a8e77f8">index_t</a> j) <span class="keyword">const</span>;
+<a name="l00119"></a>00119 
+<a name="l00123"></a>00123      <span class="keywordtype">size_t</span> <a class="code" href="classMatrix.html#5806dd5d3f56f02c2dad9ea46b985fab">allocSize</a>() <span class="keyword">const</span>;
+<a name="l00124"></a>00124 
+<a name="l00128"></a><a class="code" href="classMatrix.html#c31ca6fedb97b8923c3930171efd6be9">00128</a>      <span class="keywordtype">size_t</span> <a class="code" href="classMatrix.html#c31ca6fedb97b8923c3930171efd6be9">m_alloc_size</a>;
+<a name="l00129"></a>00129 
+<a name="l00133"></a><a class="code" href="classMatrix.html#a48e19eec87b1ddfff18a0fcc445ded4">00133</a>      <span class="keywordtype">size_t</span> <a class="code" href="classMatrix.html#a48e19eec87b1ddfff18a0fcc445ded4">m_real_size</a>;
+<a name="l00134"></a>00134 
+<a name="l00138"></a><a class="code" href="classMatrix.html#5a2eb67fc660789c2848be680d7ec7a7">00138</a>      <span class="keywordtype">double</span> *<a class="code" href="classMatrix.html#5a2eb67fc660789c2848be680d7ec7a7">m_data</a>;
+<a name="l00139"></a>00139 };
+<a name="l00140"></a>00140 
+<a name="l00141"></a><a class="code" href="classMatrix.html#435aaecd9331c9ee02bdb5bba59b20a7">00141</a> <span class="keyword">inline</span> <a class="code" href="classMatrix.html">Matrix</a> <a class="code" href="classMatrix.html#435aaecd9331c9ee02bdb5bba59b20a7">Matrix::operator*</a>(<span class="keyword">const</span> <a class="code" href="classMatrix.html">Matrix</a> &amp;m)<span class="keyword"> const</span>
+<a name="l00142"></a>00142 <span class="keyword"></span>{
+<a name="l00143"></a>00143      <span class="keywordflow">return</span> <a class="code" href="classMatrix.html#4dcb9eb25352d3fd0b737d008f4aa6ca">strassen</a>(m);
+<a name="l00144"></a>00144 }
+<a name="l00145"></a>00145 
+<a name="l00146"></a><a class="code" href="classMatrix.html#af56a6b3042cb77fc378e9d0ed800bd2">00146</a> <span class="keyword">inline</span> <span class="keywordtype">double</span> <a class="code" href="classMatrix.html#af56a6b3042cb77fc378e9d0ed800bd2">Matrix::operator()</a>(<span class="keyword">const</span> <span class="keywordtype">size_t</span> i, <span class="keyword">const</span> <span class="keywordtype">size_t</span> j)<span class="keyword"> const</span>
+<a name="l00147"></a>00147 <span class="keyword"></span>{
+<a name="l00148"></a>00148      <span class="keywordflow">return</span> <a class="code" href="classMatrix.html#5a2eb67fc660789c2848be680d7ec7a7">m_data</a>[i * <a class="code" href="classMatrix.html#c31ca6fedb97b8923c3930171efd6be9">m_alloc_size</a> + j];
+<a name="l00149"></a>00149 }
+<a name="l00150"></a>00150 
+<a name="l00151"></a><a class="code" href="classMatrix.html#4997afaca97c3ee51b2a3d6cafac8316">00151</a> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="classMatrix.html#af56a6b3042cb77fc378e9d0ed800bd2">Matrix::operator()</a>(<span class="keyword">const</span> <span class="keywordtype">size_t</span> i, <span class="keyword">const</span> <span class="keywordtype">size_t</span> j, <span class="keyword">const</span> <span class="keywordtype">double</span> v)
+<a name="l00152"></a>00152 {
+<a name="l00153"></a>00153      <a class="code" href="classMatrix.html#5a2eb67fc660789c2848be680d7ec7a7">m_data</a>[i * <a class="code" href="classMatrix.html#c31ca6fedb97b8923c3930171efd6be9">m_alloc_size</a> + j] = v;
+<a name="l00154"></a>00154 }
+<a name="l00155"></a>00155 
+<a name="l00156"></a><a class="code" href="classMatrix.html#cb77d5c75a5c9c796fe04732d424e0f1">00156</a> <span class="keyword">inline</span> <span class="keywordtype">size_t</span> <a class="code" href="classMatrix.html#cb77d5c75a5c9c796fe04732d424e0f1">Matrix::size</a>()<span class="keyword"> const</span>
+<a name="l00157"></a>00157 <span class="keyword"></span>{
+<a name="l00158"></a>00158      <span class="keywordflow">return</span> <a class="code" href="classMatrix.html#a48e19eec87b1ddfff18a0fcc445ded4">m_real_size</a>;
+<a name="l00159"></a>00159 }
+<a name="l00160"></a>00160 
+<a name="l00161"></a><a class="code" href="classMatrix.html#5806dd5d3f56f02c2dad9ea46b985fab">00161</a> <span class="keyword">inline</span> <span class="keywordtype">size_t</span> <a class="code" href="classMatrix.html#5806dd5d3f56f02c2dad9ea46b985fab">Matrix::allocSize</a>()<span class="keyword"> const</span>
+<a name="l00162"></a>00162 <span class="keyword"></span>{
+<a name="l00163"></a>00163      <span class="keywordflow">return</span> <a class="code" href="classMatrix.html#c31ca6fedb97b8923c3930171efd6be9">m_alloc_size</a>;
+<a name="l00164"></a>00164 }
+<a name="l00165"></a>00165 
+<a name="l00169"></a><a class="code" href="matrix_8h.html#673aa184d465e2e3357760bd471f35c2">00169</a> <span class="keyword">inline</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="matrix_8h.html#673aa184d465e2e3357760bd471f35c2">nextPowerOf2</a>(<span class="keyword">const</span> <span class="keywordtype">size_t</span> v)
+<a name="l00170"></a>00170 {
+<a name="l00171"></a>00171      <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> powof2 = 1;
+<a name="l00172"></a>00172      <span class="keywordflow">while</span>(powof2 &lt; v)
+<a name="l00173"></a>00173           powof2 *= 2;
+<a name="l00174"></a>00174 
+<a name="l00175"></a>00175      <span class="keywordflow">return</span> powof2;
+<a name="l00176"></a>00176 }
+<a name="l00177"></a>00177 
+<a name="l00178"></a>00178 <span class="preprocessor">#endif</span>
+</pre></div></div>
+<hr size="1"><address style="text-align: right;"><small>Généré le Tue Mar 17 11:34:45 2009 pour Strassen par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
+</body>
+</html>
